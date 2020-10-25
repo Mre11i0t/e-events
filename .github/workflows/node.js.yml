@@ -24,7 +24,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: sudo apt-get install nodemon
+    - run: sudo npm i nodemon
     - run: cd backend
     - run: npm ci
     - run: nohup nodemon index.js &
