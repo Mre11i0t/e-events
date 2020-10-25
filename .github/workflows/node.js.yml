@@ -30,4 +30,4 @@ jobs:
     - run: nohup nodemon index.js &
     - run: cd ..
     - run: npm ci
-    - run: npm start
+    - run: nohup npm start &
