@@ -3,6 +3,21 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+### `cd backend` 
+to change to the backend directory, in that directory;
+
+### `npm i` 
+to install all dependencies for backend<br/>
+
+### `nodemon index.js`
+to start the server<br/>
+
+### now, in a new terminal
+in the main folder,
+
+### `npm i`
+to install all dependencies. for frontend<br/>
+
 
 ### `npm start`
 
