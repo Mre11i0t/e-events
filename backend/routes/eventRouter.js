@@ -10,8 +10,13 @@ router.post('/addEvent', async(req, res) => {
     // if (verified.id == adminid){
         let data = new Data();
         const { eventname, description, date, time, url, imagelink } = req.body;
+        if(!eventname||!description||!date||!time){
+            return res.status(400).json({msg:"Required fields have to be entered"})
+        }
         const existingEvent = await User.findOne({ eventname: eventname })
-        if (existingEvent) return res.status(400).json({ msg: "Event already Exists please modify it" })
+        if (existingEvent) {
+            return res.status(400).json({ msg: "Event already Exists please modify it" })
+        }
         data.eventname = eventname;
         data.description = description;
         data.date = date;
