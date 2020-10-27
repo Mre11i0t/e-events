@@ -10,7 +10,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Axios from 'axios'
 import UserContext from '../Context/userContext.js'
+import Divider from '@material-ui/core/Divider';
 import {useHistory} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -121,6 +123,16 @@ export default function SignUp() {
             Sign Up
           </Button>
         </form>
+        <Grid item xs = {12}>
+        <Divider/>
+        <Link to = "/login" style = {{textDecoration: "none"}}>
+          <Button
+          color = "primary"
+          fullWidth>
+            Already have an account? Sign in
+          </Button>
+        </Link>
+        </Grid>
       </div>
     </Container>
   );

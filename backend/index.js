@@ -1,7 +1,6 @@
 const express = require('express')
 const mongoose= require('mongoose')
 const cors = require('cors')
-const { PermPhoneMsg } = require('@material-ui/icons')
 require('dotenv').config()
 
 const app = express()
