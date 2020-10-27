@@ -9,8 +9,8 @@ router.post('/addEvent', async(req, res) => {
     // const verified = jwt.verify(token, process.env.JWT_SECRET);
     // if (verified.id == adminid){
         let data = new Data();
-        const { eventname, description, date, time, url, imagelink } = req.body;
-        if(!eventname||!description||!date||!time){
+        const { eventname, description, start, end, url, imagelink } = req.body;
+        if(!eventname||!description||!start||!end){
             return res.status(400).json({msg:"Required fields have to be entered"})
         }
         const existingEvent = await User.findOne({ eventname: eventname })
@@ -19,12 +19,12 @@ router.post('/addEvent', async(req, res) => {
         }
         data.eventname = eventname;
         data.description = description;
-        data.date = date;
-        data.time = time;
+        data.start = start;
+        data.end = end;
         data.url = url;
         data.imagelink=imagelink;
         
-        let event = { eventname: eventname, description: description, date: date, time: time,url: url,imagelink: imagelink};
+        let event = { eventname: eventname, description: description, start: start, end: end,url: url,imagelink: imagelink};
         data.save(err => {
             if (err) return res.json({ success: false, error: err });
             return res.json({ success: true, event: event })
@@ -41,8 +41,8 @@ router.get("/getEvents", async(req, res) => {
             let temp = {}
             temp.eventname = elem.eventname;
             temp.description = elem.description;
-            temp.date = elem.date;
-            temp.time = elem.time;
+            temp.start = elem.start;
+            temp.end = elem.end;
             temp.url=elem.url;
             temp.imagelink=elem.imagelink;
             eventList.push(temp);
@@ -68,21 +68,21 @@ router.delete("/deleteEvent", async(req, res) => {
     // } else return res.status(403).json({ msg: "Not A Admin" })
 });
 
-// Update
+// Upstart
 router.post("/editEvent", async(req, res) => {
     // const token = req.header("x-auth-token");
     // if (!token) return res.status(403).json({ msg: "Not A Admin" })
     // const verified = jwt.verify(token, process.env.JWT_SECRET);
     // if (verified.id == adminid) {
-        const { eventname, description, date, time, url,imagelink } = req.body;
+        const { eventname, description, start, end, url,imagelink } = req.body;
         match = { eventname: eventname };
         console.log(description);
-        console.log(date);
-        console.log(time);
+        console.log(start);
+        console.log(end);
         console.log(url);
         console.log(imagelink);
-        update = { eventname:eventname, description: description, date: date, time: time, url: url,imagelink: imagelink };
-        Data.updateOne(match, update, err => {
+        upstart = { eventname:eventname, description: description, start: start, end: end, url: url,imagelink: imagelink };
+        Data.upstartOne(match, upstart, err => {
             if (err) return res.json({ success: false, error: err });
             return res.json({ success: true });
         });
@@ -98,8 +98,8 @@ router.get("/findEvent", async(req,res) => {
             if (elem.eventname == match.eventname){
                 temp.eventname = elem.eventname;
                 temp.description = elem.description;
-                temp.date = elem.date;
-                temp.time = elem.time;
+                temp.start = elem.start;
+                temp.end = elem.end;
                 temp.url = elem.url;
                 temp.imagelink = elem.imagelink;
             }
