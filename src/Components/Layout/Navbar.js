@@ -32,15 +32,23 @@ export default function Navbar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h4" className={classes.title}>
             E-Events
           </Typography>
-          {userData.user?(<Button
+          {userData.user?(<>
+                              <Button 
+                                color = "inherit"
+                              >
+                                  Your Events
+                              </Button>
+                              <Button
                                 color = "inherit"
                                 onClick={logout}
                               >
                                   Log Out
-                              </Button>):(
+                              </Button>
+                              </>
+                              ):(
                               <>
                               <Link to ="/login" style = {{color:'#FFF', textDecoration: 'none'}}> 
                               <Button color="inherit">Login</Button>
