@@ -9,6 +9,7 @@ import Navbar from "./Layout/Navbar.js"
 import userContext from "../Context/userContext.js"
 function SignedIn(){
     //this function also uses context, it returns a simple welcome message using userData
+    //you are supposed to edit this, and fit to use
     const {userData, setUserData} = useContext(userContext);
     return (
         <>

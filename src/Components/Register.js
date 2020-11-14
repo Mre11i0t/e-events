@@ -5,6 +5,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -25,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%', 
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -38,10 +40,12 @@ export default function SignUp() {
   const [password, setPassword]=useState()
   const [passwordCheck, setPasswordCheck]=useState()
   const [name, setName]=useState()
+  const [error, setError]=useState()
   const classes = useStyles();
   const {setUserData}=useContext(UserContext)
   const history  = useHistory();
   const submit = async (e) =>{
+    try{
     e.preventDefault();
     const newUser = {email, password, passwordCheck, name};
     const registerRes = await Axios.post('http://localhost:5000/users/register', newUser);
@@ -52,6 +56,12 @@ export default function SignUp() {
     })
     localStorage.setItem("auth-token", loginRes.data.token);
     history.push('/');
+    }
+    catch(err){
+      if(err.response.data.msg){
+        setError(err.response.data.msg);
+      }
+    }
   }
   return (
     <Container component="main" maxWidth="xs">
@@ -123,15 +133,38 @@ export default function SignUp() {
             Sign Up
           </Button>
         </form>
+        <Grid container spacing={2}>
         <Grid item xs = {12}>
+              {
+                (error)?<>
+                <Box style={{ backgroundColor:'#E6B0AA'}} fullwidth="true">
+                <Grid container>
+                <Grid item  md={1}>
+                <ErrorOutlineIcon style={{color:'B00020'}}/>
+                </Grid>
+                <Grid item  md={11}>
+                <Typography style = {{color:'#B00020', textAlign:"center"}}>
+                  {error}
+                </Typography>
+                </Grid>
+                </Grid>
+                </Box>
+                </>:<>
+                </>
+              }
+        </Grid>
+        <Grid item xs = {12}>
+        <br/>
         <Divider/>
+        <br/>
         <Link to = "/login" style = {{textDecoration: "none"}}>
           <Button
           color = "primary"
-          fullWidth>
+          fullWidth='true'>
             Already have an account? Sign in
           </Button>
         </Link>
+        </Grid>
         </Grid>
       </div>
     </Container>

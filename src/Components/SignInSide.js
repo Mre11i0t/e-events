@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 //import FormControlLabel from '@material-ui/core/FormControlLabel';
 //import Link from '@material-ui/core/Link';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import {Link} from "react-router-dom";
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
@@ -67,8 +68,10 @@ export default function SignInUser() {
   const [email, setEmail] = useState();
   const [password,setPassword] = useState();
   const history = useHistory();
-  const {setUserData} = useContext(UserContext)
+  const {setUserData} = useContext(UserContext);
+  let [error, setError] = useState();
   const submit = async(e)=>{
+    try{
     e.preventDefault();
     const userC = {email, password};
     const loginRes = await Axios.post("http://localhost:5000/users/login",userC)
@@ -78,6 +81,12 @@ export default function SignInUser() {
       user: loginRes.data.user
     })
     history.push('/')
+    }
+    catch(err){
+      if(err.response.data.msg){
+        setError(err.response.data.msg);
+      }
+    }
   }
   return (
     <Grid container component="main" className={classes.root}>
@@ -124,6 +133,25 @@ export default function SignInUser() {
             >
               Sign In
             </Button>
+            <Grid item>
+              {
+                (error)?<>
+                <Box style={{ backgroundColor:'#E6B0AA'}} fullwidth="true">
+                <Grid container>
+                <Grid item  md={4}>
+                <ErrorOutlineIcon style={{color:'B00020'}}/>
+                </Grid>
+                <Grid item  md={4}>
+                <Typography style = {{color:'#B00020', textAlign:"center"}}>
+                  {error}
+                </Typography>
+                </Grid>
+                </Grid>
+                </Box>
+                </>:<>
+                </>
+              }
+            </Grid>
             <Grid item>
             <Link to = "/AdminLogin" style = {{textDecoration: 'none'}}>
             <Button
