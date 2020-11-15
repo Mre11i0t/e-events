@@ -1,13 +1,8 @@
 const router = require("express").Router();
 const Data = require("../models/eventModel");
 const User = require("../models/userModel");
-const adminid = "5f97e6abe8fe291184112400"
-
-router.post('/addEvent', async(req, res) => {
-    // const token = req.header("x-auth-token");
-    // if (!token) return res.status(403).json({ msg: "Not A Admin" })
-    // const verified = jwt.verify(token, process.env.JWT_SECRET);
-    // if (verified.id == adminid){
+const admin = require("../middleware/admin")
+router.post('/addEvent',admin, async(req, res) => {
         let data = new Data();
         const { eventname, description, start, end, url, imagelink } = req.body;
         if(!eventname||!description||!start||!end){
@@ -29,8 +24,6 @@ router.post('/addEvent', async(req, res) => {
             if (err) return res.json({ success: false, error: err });
             return res.json({ success: true, event: event })
     });
-    // }
-    // else return res.status(403).json({ msg: "Not A Admin" })
 });
 
 router.get("/getEvents", async(req, res) => {
@@ -53,27 +46,15 @@ router.get("/getEvents", async(req, res) => {
     });
 });
 
-router.delete("/deleteEvent", async(req, res) => {
-    // const token = req.header("x-auth-token");
-    // if (!token) return res.status(403).json({ msg: "Not A Admin" })
-    // const verified = jwt.verify(token, process.env.JWT_SECRET);
-    // if (verified.id == adminid) {
+router.delete("/deleteEvent",admin, async(req, res) => {
         const { eventname } = req.body;
         match = { eventname: eventname }
-        //console.log(match);
         Data.deleteOne(match, err => {
             if (err) return res.json({ success: false, error: err });
             return res.json({ success: true, eventname: eventname });
         });
-    // } else return res.status(403).json({ msg: "Not A Admin" })
 });
-
-// Upstart
-router.post("/editEvent", async(req, res) => {
-    // const token = req.header("x-auth-token");
-    // if (!token) return res.status(403).json({ msg: "Not A Admin" })
-    // const verified = jwt.verify(token, process.env.JWT_SECRET);
-    // if (verified.id == adminid) {
+router.post("/editEvent",admin, async(req, res) => {
         const { eventname, description, start, end, url,imagelink } = req.body;
         match = { eventname: eventname };
         console.log(description);
@@ -86,7 +67,6 @@ router.post("/editEvent", async(req, res) => {
             if (err) return res.json({ success: false, error: err });
             return res.json({ success: true });
         });
-    // } else return res.status(403).json({ msg: "Not A Admin" })
 });
 
 router.get("/findEvent", async(req,res) => {
@@ -108,6 +88,12 @@ router.get("/findEvent", async(req,res) => {
         return res.json({ success: true, event: temp });
     });
 });
+
+router.get("/id",admin,async(req,res)=>{
+    const user = await User.findById(req.user);
+    res.json({
+        name: user.name,
+        id: user._id
+    });
+})
 module.exports = router;
-
-
