@@ -83,7 +83,7 @@ export default function SignInUser() {
     history.push('/')
     }
     catch(err){
-      if(err.response.data.msg){
+      if(err.response && err.response.data.msg){
         setError(err.response.data.msg);
       }
     }

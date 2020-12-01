@@ -137,7 +137,7 @@ export default function SignUp() {
         <Grid item xs = {12}>
               {
                 (error)?<>
-                <Box style={{ backgroundColor:'#E6B0AA'}} fullwidth="true">
+                <Box style={{ backgroundColor:'#E6B0AA'}} fullwidth= 'true' >
                 <Grid container>
                 <Grid item  md={1}>
                 <ErrorOutlineIcon style={{color:'B00020'}}/>
@@ -160,7 +160,7 @@ export default function SignUp() {
         <Link to = "/login" style = {{textDecoration: "none"}}>
           <Button
           color = "primary"
-          fullWidth='true'>
+          fullWidth={true}>
             Already have an account? Sign in
           </Button>
         </Link>

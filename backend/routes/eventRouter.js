@@ -42,7 +42,7 @@ router.get("/getEvents", async(req, res) => {
         });
         eventData.events = eventList;
         if (err) return res.json({ success: false, error: err });
-        return res.json({ success: true, events: eventData });
+        return res.json({eventData});
     });
 });
 

@@ -35,7 +35,22 @@ export default function Navbar() {
           <Typography variant="h4" className={classes.title}>
             E-Events
           </Typography>
-          {userData.user?(<>
+          {userData.user?((
+                            (userData.user.id==="5fb101bd6ab4b44be8a1cbc8")?
+                              <>
+                              <Button 
+                                color = "inherit"
+                              >
+                                Manage Events
+                              </Button>
+                              <Button
+                                color = "inherit"
+                                onClick={logout}
+                              >
+                                  Log Out
+                              </Button>
+                              </>:
+                              <>
                               <Button 
                                 color = "inherit"
                               >
@@ -48,7 +63,7 @@ export default function Navbar() {
                                   Log Out
                               </Button>
                               </>
-                              ):(
+                              )):(
                               <>
                               <Link to ="/login" style = {{color:'#FFF', textDecoration: 'none'}}> 
                               <Button color="inherit">Login</Button>
