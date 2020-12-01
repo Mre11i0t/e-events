@@ -53,7 +53,7 @@ function Home(){
                                 title={`${item.eventname}`}
                             />
                             <CardContent>
-                                <Typography variant="h7" gutterBottom>
+                                <Typography>
                                     {item.description}
                                 </Typography>
                                 <Typography >
