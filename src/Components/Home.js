@@ -46,7 +46,6 @@ function Home(){
          {
             (events)?
              events.slice().map((item, index)=>{
-                 console.log(item.url)
                  return(
                      <Grid md = {3} item key = {index}> 
                      <Card>
@@ -54,7 +53,7 @@ function Home(){
                                 title={`${item.eventname}`}
                             />
                             <CardContent>
-                                <Typography variant="h5" gutterBottom>
+                                <Typography variant="h7" gutterBottom>
                                     {item.description}
                                 </Typography>
                                 <Typography >
