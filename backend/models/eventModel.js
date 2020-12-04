@@ -6,7 +6,6 @@ const eventSchema = new mongoose.Schema({
     end: { type: String, required: true },
     url:{type:String,required:false},
     imagelink:{type:String,required:false},
-    attendees:[] //array of strings
 });
 
 module.exports = Data = mongoose.model("Data", eventSchema);

@@ -22,4 +22,17 @@ router.post('/attendEvent',auth, async(req, res) => {
     }
     // Data.attendees.push(req.user);
 });
+router.get('/getUserevents',auth,async(req, res) =>{
+    try{
+        const token = req.header("x-auth-token");
+        const verified = jwt.verify(token, process.env.JWT_SECRET);
+        let userevents=await User.findById(
+            verified.id,
+        )
+        return res.status(200).json({events:userevents.events})
+    }
+    catch(err){
+        return res.status(500).json({error:err.message})
+    }
+})
 module.exports = router;
