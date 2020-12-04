@@ -13,9 +13,13 @@ router.post('/attendEvent',auth, async(req, res) => {
         console.log(event);
         let user = await User.findById(verified.id);
         console.log(user)
-        if(user.events.includes(event))
+        let checker = false;
+        for(i in user.events){
+            if(user.events[i].eventname===event.eventname) checker = true;
+        }
+        if(checker)
         {
-            res.status(400).json({error:"event already added"});
+            return res.status(400).json({error:"event already added"});
         }
 
         await User.findByIdAndUpdate(
