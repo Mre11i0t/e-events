@@ -23,3 +23,4 @@ mongoose.connect(process.env.MONGODB_CSTRING, {useNewUrlParser:true, useUnifiedT
 //set up route
 app.use("/users",require("./routes/userRouter"))
 app.use("/events",require("./routes/eventRouter"))
+app.use("/userevents",require("./routes/usereventRouter"))
