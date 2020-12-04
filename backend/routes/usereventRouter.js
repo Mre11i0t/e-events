@@ -10,7 +10,14 @@ router.post('/attendEvent',auth, async(req, res) => {
         const verified = jwt.verify(token, process.env.JWT_SECRET);
         let myurl = url.parse(req.url);
         let event=await Data.findOne({eventname:myurl.query});
-        console.log(event)
+        console.log(event);
+        let user = await User.findById(verified.id);
+        console.log(user)
+        if(user.events.includes(event))
+        {
+            res.status(400).json({error:"event already added"});
+        }
+
         await User.findByIdAndUpdate(
             verified.id,
             { $push: {events:event}}
