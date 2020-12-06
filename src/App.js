@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import SignInUser from "./Components/SignInSide.js";
-import AdminLogin from "./Components/Auth/AdminLogin.js";
 import {BrowserRouter,Switch, Route} from "react-router-dom";
 import Home from "./Components/Home.js";
 import Axios from "axios";
@@ -43,7 +42,6 @@ function App() {
         <Route path  = '/' exact component = {Home}/>
         <Route path = '/login' component = {SignInUser} />
         <Route path = "/register" component = {SignUp}/>
-        <Route path = '/AdminLogin' component = {AdminLogin}/>
         <Route path = '/ManageEvent' component = {AddEvent}/>
       </Switch>
       </UserContext.Provider>

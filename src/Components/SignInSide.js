@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     backgroundImage: `url(${Ev})`,
-    backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
     backgroundSize: 'cover',
@@ -151,17 +150,6 @@ export default function SignInUser() {
                 </>:<>
                 </>
               }
-            </Grid>
-            <Grid item>
-            <Link to = "/AdminLogin" style = {{textDecoration: 'none'}}>
-            <Button
-              fullWidth
-              color = "secondary"
-              className = {classes.generalB}
-            >
-              Admin? Click here
-            </Button>
-            </Link>
             </Grid>
             <Grid item>
               <Divider/>
