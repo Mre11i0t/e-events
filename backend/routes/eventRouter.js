@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Data = require("../models/eventModel");
 const User = require("../models/userModel");
 const admin = require("../middleware/admin")
+const auth = require('../middleware/auth')
 router.post('/addEvent',admin, async(req, res) => {
         let data = new Data();
         const { eventname, description, start, end, url, imagelink } = req.body;
@@ -89,7 +90,7 @@ router.get("/findEvent", async(req,res) => {
     });
 });
 
-router.get("/id",admin,async(req,res)=>{
+router.get("/id",auth,async(req,res)=>{
     const user = await User.findById(req.user);
     res.json({
         name: user.name,
