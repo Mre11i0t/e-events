@@ -30,6 +30,17 @@ function SignedIn() {
 function Home() {
   const { userData, setUserData } = useContext(userContext);
   const [events, setEvents] = useState();
+  // const deleteevent=async (eventname) =>{
+  //   console.log(' deleted once')
+  //     Axios.delete('http://localhost:5000/events/deleteEvent', {
+  //       headers: {
+  //         'x-auth-token':localStorage.getItem('auth-token')
+  //       },
+  //       data: {
+  //         eventname:eventname
+  //       }
+  //     });
+  // }
   useLayoutEffect(() => {
     let eventfunc = async () => {
       let result = await Axios.get("http://localhost:5000/events/getEvents");
@@ -97,8 +108,8 @@ function Home() {
                         </div>
                         <center>
                           <Button className={styles.addBtn} color="inherit">
-                            {userData.user.id === "5fb101bd6ab4b44be8a1cbc8"
-                              ? (<b>Modify Event</b>)
+                            {userData.user.id === "5fca2527b7d16927ec0a69f9"
+                              ? (<b>Delete Event</b>)
                               : (<b>Register</b>)}
                           </Button>
                         </center>
@@ -120,3 +131,4 @@ function Home() {
 }
 
 export default Home;
+// ? (<b onClick={deleteevent(`${item.eventname}`)}>Delete Event</b>)
