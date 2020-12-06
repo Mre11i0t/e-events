@@ -30,17 +30,34 @@ function SignedIn() {
 function Home() {
   const { userData, setUserData } = useContext(userContext);
   const [events, setEvents] = useState();
-  // const deleteevent=async (eventname) =>{
-  //   console.log(' deleted once')
-  //     Axios.delete('http://localhost:5000/events/deleteEvent', {
-  //       headers: {
-  //         'x-auth-token':localStorage.getItem('auth-token')
-  //       },
-  //       data: {
-  //         eventname:eventname
-  //       }
-  //     });
-  // }
+  const [workEvent, setworkEvent] = useState();
+  const deleteevent=async () =>{
+     console.log(' deleted once')
+     try{
+       await Axios.delete('http://localhost:5000/events/deleteEvent', {
+         headers: {
+           'x-auth-token':localStorage.getItem('auth-token')
+         },
+         data: {
+           eventname:workEvent
+         }
+       });
+     }
+     catch(err){
+      if(err.error) alert(err.error);
+     }
+   }
+  const RegisterEvent = async()=>{
+    try{
+      console.log(workEvent);
+      await Axios.post(`http://localhost:5000/userevents/attendEvent?eventname=${workEvent}`,null,{headers: {
+        'x-auth-token':localStorage.getItem('auth-token')
+      }})
+    }
+    catch(err){
+      if(err.response.data.error) alert(err.response.data.error);
+    }
+  }
   useLayoutEffect(() => {
     let eventfunc = async () => {
       let result = await Axios.get("http://localhost:5000/events/getEvents");
@@ -107,11 +124,16 @@ function Home() {
                           </h6>
                         </div>
                         <center>
-                          <Button className={styles.addBtn} color="inherit">
-                            {userData.user.id === "5fca2527b7d16927ec0a69f9"
-                              ? (<b>Delete Event</b>)
-                              : (<b>Register</b>)}
+                        {
+                        (userData.user.id === "5fca2527b7d16927ec0a69f9")?<>
+                          <Button className={styles.addBtn} color="inherit" onMouseOver = {()=>{setworkEvent(item.eventname)}} onClick={deleteevent}>
+                            Delete
                           </Button>
+                        </>:
+                          <Button className={styles.addBtn} color="inherit" onMouseOver = {()=>{setworkEvent(item.eventname)}} onClick={RegisterEvent}>
+                            Register
+                          </Button>
+                        }
                         </center>
                       </Card>
                     </Grid>

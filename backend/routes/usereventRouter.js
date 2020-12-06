@@ -8,8 +8,8 @@ router.post('/attendEvent',auth, async(req, res) => {
     try{
         const token = req.header("x-auth-token");
         const verified = jwt.verify(token, process.env.JWT_SECRET);
-        let myurl = url.parse(req.url);
-        let event=await Data.findOne({eventname:myurl.query});
+        let queryEvent = req.query;
+        let event=await Data.findOne(queryEvent);
         console.log(event);
         let user = await User.findById(verified.id);
         console.log(user)
