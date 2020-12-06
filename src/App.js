@@ -7,6 +7,8 @@ import Home from "./Components/Home.js";
 import Axios from "axios";
 import UserContext from "./Context/userContext.js"
 import SignUp from "./Components/Register.js"
+import AddEvent from './Components/AddEvent/addEvent'
+
 function App() {
   const [userData, setUserData] = useState({
     token: undefined,
@@ -42,6 +44,7 @@ function App() {
         <Route path = '/login' component = {SignInUser} />
         <Route path = "/register" component = {SignUp}/>
         <Route path = '/AdminLogin' component = {AdminLogin}/>
+        <Route path = '/ManageEvent' component = {AddEvent}/>
       </Switch>
       </UserContext.Provider>
       </BrowserRouter>

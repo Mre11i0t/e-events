@@ -36,11 +36,21 @@ export default function Navbar() {
             E-Events
           </Typography>
           {userData.user ? (
-            userData.user.id === "5fb101bd6ab4b44be8a1cbc8" ? (
+            userData.user.id === "5fca2527b7d16927ec0a69f9" ? (
               <>
-                <Button color="inherit">Manage Events</Button>
+                <Link
+                  to="/ManageEvent"
+                  style={{ color: "#FFF", textDecoration: "none" }}
+                >
+                  <Button color="inherit">Manage Events</Button>
+                </Link>
                 <Button color="inherit" onClick={logout}>
-                  Log Out
+                  <Link
+                    to="/"
+                    style={{ color: "#FFF", textDecoration: "none" }}
+                  >
+                    Log Out
+                  </Link>
                 </Button>
               </>
             ) : (
