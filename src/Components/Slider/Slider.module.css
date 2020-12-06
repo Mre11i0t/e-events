@@ -1,0 +1,51 @@
+.sliderCard {
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  border-radius: 0 !important;
+}
+
+.card {
+  border-radius: 0 !important;
+}
+
+.outerDiv {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.innerDiv {
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: white !important;
+  min-height: 60vh;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.innerDiv h2 {
+  color: white;
+  text-transform: uppercase;
+  font-size: 4rem !important;
+  margin: 10px 0;
+}
+
+.innerDiv .showMoreBtn {
+  color: white;
+  font-weight: 600;
+  background: var(--primaryColor) !important;
+  padding: 5px 20px;
+}
+/*# sourceMappingURL=Slider.module.css.map */

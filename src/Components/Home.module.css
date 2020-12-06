@@ -1,0 +1,75 @@
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.card {
+  background: #f3f2f2;
+  padding: 20px 30px;
+}
+
+.title {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: 8px auto;
+}
+
+.title h5 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: black;
+}
+
+.title h5,
+.title h6 {
+  margin: auto;
+  color: black;
+}
+
+.title h6 {
+  color: var(--fontLight);
+  font-size: 1rem;
+  font-weight: 300;
+  color: black;
+}
+
+.imageContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 200px;
+}
+
+.imageContainer img {
+  max-width: 200px !important;
+  margin: auto;
+}
+
+.addBtn {
+  color: white;
+  margin: 15px auto;
+  padding: 5px 15px !important;
+}
