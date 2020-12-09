@@ -3,7 +3,7 @@ const Data = require("../models/eventModel");
 const auth = require("../middleware/auth");
 const User = require("../models/userModel");
 const jwt = require('jsonwebtoken');
-const url= require('url')
+// const url= require('url')
 router.post('/attendEvent',auth, async(req, res) => {
     try{
         const token = req.header("x-auth-token");
