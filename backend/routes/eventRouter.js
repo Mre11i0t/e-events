@@ -55,41 +55,6 @@ router.delete("/deleteEvent",admin, async(req, res) => {
             return res.json({ success: true, eventname: eventname });
         });
 });
-router.post("/editEvent",admin, async(req, res) => {
-        const { eventname, description, start, end, url,imagelink } = req.body;
-        match = { eventname: eventname };
-        console.log(description);
-        console.log(start);
-        console.log(end);
-        console.log(url);
-        console.log(imagelink);
-        upstart = { eventname:eventname, description: description, start: start, end: end, url: url,imagelink: imagelink };
-        Data.upstartOne(match, upstart, err => {
-            if (err) return res.json({ success: false, error: err });
-            return res.json({ success: true });
-        });
-});
-
-router.get("/findEvent", async(req,res) => {
-    const { eventname } = req.body;
-    match = { eventname: eventname }
-    Data.find((err,events) => {
-        let temp = {}
-        events.forEach(elem => {
-            if (elem.eventname == match.eventname){
-                temp.eventname = elem.eventname;
-                temp.description = elem.description;
-                temp.start = elem.start;
-                temp.end = elem.end;
-                temp.url = elem.url;
-                temp.imagelink = elem.imagelink;
-            }
-        });
-        if (err) return res.json({ success: false, error: err });
-        return res.json({ success: true, event: temp });
-    });
-});
-
 router.get("/id",auth,async(req,res)=>{
     const user = await User.findById(req.user);
     res.json({
